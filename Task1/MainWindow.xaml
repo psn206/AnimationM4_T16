@@ -1,0 +1,76 @@
+﻿<Window x:Class="Task1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="500">
+    <Window.Resources>
+        <Style TargetType="Ellipse" x:Key="elipsStyle">
+            <Setter Property="Canvas.Top" Value="142"/>
+            <Setter Property="Canvas.Left" Value="184"/>
+            <Setter Property="Stroke" Value="Black"/>
+            <Setter Property="Fill" Value="Black"/>
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Height" Value="10"/>
+        </Style>
+
+        <Storyboard x:Key="elipsTop">
+            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetProperty="(Canvas.Top)"
+                                Duration="0:0:3"
+                                RepeatBehavior="Forever">
+                <LinearDoubleKeyFrame KeyTime="0%" Value="140"/>
+                <LinearDoubleKeyFrame KeyTime="20%" Value="125"/>
+                <LinearDoubleKeyFrame KeyTime="40%" Value="115"/>
+                <LinearDoubleKeyFrame KeyTime="60%" Value="125"/>
+                <LinearDoubleKeyFrame KeyTime="80%" Value="130"/>
+                <LinearDoubleKeyFrame KeyTime="99%" Value="140"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="elipsLeft">
+            <DoubleAnimationUsingKeyFrames
+                                Storyboard.TargetProperty="(Canvas.Left)"
+                                Duration="0:0:3"
+                                RepeatBehavior="Forever">
+                <LinearDoubleKeyFrame KeyTime="0%" Value="195"/>
+                <LinearDoubleKeyFrame KeyTime="20%" Value="210"/>
+                <LinearDoubleKeyFrame KeyTime="40%" Value="195"/>
+                <LinearDoubleKeyFrame KeyTime="60%" Value="165"/>
+                <LinearDoubleKeyFrame KeyTime="80%" Value="175"/>
+                <LinearDoubleKeyFrame KeyTime="99%" Value="195"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Canvas>
+        <Canvas.Background>
+            <ImageBrush ImageSource="/Кот.png"/>
+        </Canvas.Background>
+
+        <Ellipse Style="{StaticResource elipsStyle}">
+            <Ellipse.Triggers>
+                <EventTrigger RoutedEvent="Window.Loaded">
+                    <BeginStoryboard Storyboard="{StaticResource elipsTop}"/>
+                    <BeginStoryboard Storyboard="{StaticResource elipsLeft}"/>
+                </EventTrigger>
+            </Ellipse.Triggers>
+        </Ellipse>
+
+        <Ellipse Style="{StaticResource elipsStyle}">
+            <Ellipse.RenderTransform>
+                <ScaleTransform CenterX="50"
+                                ScaleX="-1"/>
+            </Ellipse.RenderTransform>
+            <Ellipse.Triggers>
+                <EventTrigger RoutedEvent="Window.Loaded">
+                    <BeginStoryboard Storyboard="{StaticResource elipsTop}"/>
+                    <BeginStoryboard Storyboard="{StaticResource elipsLeft}"/>
+                </EventTrigger>
+            </Ellipse.Triggers>
+        </Ellipse>
+        
+    </Canvas>
+</Window>
